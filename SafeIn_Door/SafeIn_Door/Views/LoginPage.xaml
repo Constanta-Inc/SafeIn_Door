@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:SafeIn_Door.ViewModels"
+             x:Class="SafeIn_Door.Views.LoginPage">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:LoginPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="30" BackgroundColor="LightBlue">
+            <Label Text="Enter door ID: " FontSize="Large" Margin="15" FontAttributes="Italic"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Entry Placeholder="ID" VerticalOptions="Center" Opacity="50"
+                   ClearButtonVisibility="WhileEditing"
+                   Keyboard="Chat" Text="{Binding DoorID, Mode=TwoWay}"/>
+
+            <Label Text="{Binding ErrorMessage, Mode=TwoWay}" FontSize="Small" Margin="15" FontAttributes="Italic" TextColor="Red"
+                />
+
+
+            <Button Text="Confirm" VerticalOptions="Center" BackgroundColor="DodgerBlue"  Command="{Binding LoginCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

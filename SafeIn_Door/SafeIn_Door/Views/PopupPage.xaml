@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct1:Popup  xmlns:xct1="http://xamarin.com/schemas/2020/toolkit"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            IsLightDismissEnabled="False"
+             xmlns:viewmodels1="clr-namespace:SafeIn_Door.ViewModels"
+             x:DataType="viewmodels1:MainPageViewModel"
+           Size="300,300"
+           x:Class="SafeIn_Door.Views.PopupPage">
+
+    <StackLayout>
+        <Label x:Name="Resultlabel"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+        <Button Text="Ok" Clicked="ClosePopup"/>
+    </StackLayout>
+</xct1:Popup>
+    
+    
+    
