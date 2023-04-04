@@ -2,28 +2,100 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:SafeIn_Door.ViewModels"
-             x:Class="SafeIn_Door.Views.LoginPage">
+             xmlns:controls="clr-namespace:SafeIn_Door.CustomStyle"
+             x:Class="SafeIn_Door.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="background">
     
     <ContentPage.BindingContext>
         <viewmodels:LoginPageViewModel/>
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="LogInBackgroundGradient" TargetType="BoxView">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="-0.8,-1" EndPoint="1,1" >
+                            <GradientStop Color="#E85EFF" Offset="0.0" />
+                            <GradientStop Color="#10D9D9D9" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                
+            </Style>
+
+            <Style x:Key="Label" TargetType="Label">
+                <Setter Property="FontFamily" Value="Montserrat-Bold"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            </Style>
+
+            <Style x:Key="SubmitButton" TargetType="Button">
+                <Setter Property="Margin" Value="40,0,40,0"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="CornerRadius" Value="25"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="FontFamily" Value="Montserrat-Bold"></Setter>
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
+                            <GradientStop Color="#9900FF47" Offset="0.0" />
+                            <GradientStop Color="#99D9D9D9" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HeightRequest" Value="70"></Setter>
+            </Style>
+
+            <Style x:Key="EntryID" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="FontSize" Value="16"></Setter>
+                <Setter Property="Placeholder" Value="ID"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="Margin" Value="50,0,55,0"></Setter>
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing"></Setter>
+                <Setter Property="Keyboard" Value="Chat"></Setter>
+            </Style>
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout Padding="30" BackgroundColor="LightBlue">
-            <Label Text="Enter door ID: " FontSize="Large" Margin="15" FontAttributes="Italic"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="TitleLayout" Height="5*" />
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="1.5*" />
+                
+            </Grid.RowDefinitions>
 
-            <Entry Placeholder="ID" VerticalOptions="Center" Opacity="50"
-                   ClearButtonVisibility="WhileEditing"
-                   Keyboard="Chat" Text="{Binding DoorID, Mode=TwoWay}"/>
+            <Label x:Name="LogInTitle" Style="{StaticResource Label}" Margin="60,0,60,0" FontSize="42" Text="SafeIn Camera App" />
+            
+            <Frame BackgroundColor="Transparent" BorderColor="#99ffffff" CornerRadius="25" Margin="0,0,0,-25" Grid.Row="1" Grid.RowSpan="4"></Frame>
 
-            <Label Text="{Binding ErrorMessage, Mode=TwoWay}" FontSize="Small" Margin="15" FontAttributes="Italic" TextColor="Red"
-                />
+            <BoxView Style="{StaticResource LogInBackgroundGradient}" CornerRadius="25,25,0,0" Grid.Row="1" Grid.RowSpan="4">
+            </BoxView>
+
+            <Label x:Name="EnterDoorLabel" Style="{StaticResource Label}" FontSize="24" Grid.Row="1" Text="Enter door ID: "/>
+
+            <Label x:Name="IDLabel"  FontFamily='Montserrat-Bold' TextColor="White" Grid.Row="2" FontSize="16" Margin="55,0,0,0" Text="ID"/>
+
+            <Entry x:Name="EntryID" Grid.Row="3" Style="{StaticResource EntryID}"  Text="{Binding DoorID, Mode=TwoWay}"/>
+
+            <Label Grid.Row="4" Text="{Binding ErrorMessage, Mode=TwoWay}"/>
+
+            <Button x:Name="SubmitButton" Grid.Row="4" Text="Submit" Style="{StaticResource SubmitButton}"  Command="{Binding LoginCommand}"/>
+
+        </Grid>
 
 
-            <Button Text="Confirm" VerticalOptions="Center" BackgroundColor="DodgerBlue"  Command="{Binding LoginCommand}"/>
-        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>

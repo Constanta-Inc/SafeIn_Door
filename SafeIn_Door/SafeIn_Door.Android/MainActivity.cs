@@ -19,6 +19,7 @@ namespace SafeIn_Door.Droid
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
             LoadApplication(new App());
+            Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 136, 0, 214));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

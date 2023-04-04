@@ -6,12 +6,24 @@
              xmlns:viewmodels1="clr-namespace:SafeIn_Door.ViewModels"
              x:DataType="viewmodels1:MainPageViewModel"
            Size="300,300"
+           Color="Transparent"
            x:Class="SafeIn_Door.Views.PopupPage">
 
-    <StackLayout>
-        <Label x:Name="Resultlabel"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-        <Button Text="Ok" Clicked="ClosePopup"/>
-    </StackLayout>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <!-- Реалізувати 2 типи popup : Success - коли qr code проскановано і двері відкрились, Error - коли qr code не вірний / або інші види помилок при скануванні -->
+        <Label Text="Error" TextColor="#FF6363" FontSize="42" FontFamily="Montserrat-Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label> 
+        <!--<Label Text="Succes" TextColor="#00FF47" FontSize="42" FontFamily="Montserrat-Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>-->
+        <BoxView BackgroundColor="White" CornerRadius="25" Grid.Row="1"></BoxView>
+        <Label Grid.Row="1" x:Name="Resultlabel" FontSize="24" FontFamily="Montserrat-Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+        <Button TextColor="Black" BackgroundColor="#00FF47" FontSize="24" Grid.Row="2" FontFamily="Montserrat-Bold" CornerRadius="25" Text="Try Again" Clicked="ClosePopup"/>
+    </Grid>
+  
 </xct1:Popup>
     
     
