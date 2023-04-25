@@ -3,26 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:SafeIn_Door.ViewModels"
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="background"
              x:Class="SafeIn_Door.MainPage">
 
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel/>
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Label" TargetType="Label">
+                <Setter Property="FontFamily" Value="Montserrat-Bold"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                
+            </Style>
 
-    </ContentPage.ToolbarItems>
+            <Style x:Key="TryButton" TargetType="Button">
+                <Setter Property="Margin" Value="30,0,30,0"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="CornerRadius" Value="25"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="FontFamily" Value="Montserrat-Bold"></Setter>
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
+                            <GradientStop Color="#900066FF" Offset="0.0" />
+                            <GradientStop Color="#694B93FF" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HeightRequest" Value="70"></Setter>
+            </Style>
 
-    <StackLayout>
-        <Frame BackgroundColor="LightBlue" Padding="24" CornerRadius="0">
-  
-        </Frame>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <zxing:ZXingScannerView IsScanning="True"  OnScanResult="ZXingScannerView_OnScanResult"/>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
 
-        <Button Text="Try!" Command="{Binding DoorTryCommand}" />
+            <Label x:Name="ScanLabel" Style="{StaticResource Label}" Margin="50,0,50,0" Text="Scan QR Code"/>
 
-    </StackLayout>
+            <BoxView BackgroundColor="White" CornerRadius="25,25,0,0" Grid.Row="1" Grid.RowSpan="2">
+            </BoxView>
 
+            <Frame x:Name="Camera" Padding="0" CornerRadius="25" Margin="30,40,30,0" Grid.Row='1'>
+                <zxing:ZXingScannerView IsScanning="True" OnScanResult="ZXingScannerView_OnScanResult"/>
+            </Frame>
+
+            <Button x:Name="TryButton" Style="{StaticResource TryButton}" Text="Try" Grid.Row='2' Command="{Binding DoorTryCommand}" />
+
+        </Grid>
+    </ContentPage.Content>
 
 </ContentPage>

@@ -15,6 +15,7 @@ namespace SafeIn_Door.Views
         private static string PopupText;
         public PopupPage(string PopupText_)
         {
+            this.BackgroundColor = new Color(0, 0, 0, 0.4);
             InitializeComponent();
             PopupText = PopupText_;
             Resultlabel.Text = PopupText;
