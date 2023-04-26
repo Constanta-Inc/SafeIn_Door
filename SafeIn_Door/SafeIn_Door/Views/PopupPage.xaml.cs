@@ -13,12 +13,22 @@ namespace SafeIn_Door.Views
     public partial class PopupPage : Popup
     {
         private static string PopupText;
-        public PopupPage(string PopupText_)
+        private static string ErrorText;
+
+        public PopupPage(string PopupText_, string ResultText_)
         {
             this.BackgroundColor = new Color(0, 0, 0, 0.4);
             InitializeComponent();
             PopupText = PopupText_;
             Resultlabel.Text = PopupText;
+            ErrorText = ResultText_;
+            ResultErrorLabel.Text = ErrorText;
+            ResultErrorLabel.TextColor = Color.Red;
+            if (ErrorText == "Success!")
+            {
+                ResultErrorLabel.TextColor = Color.Lime;
+            }
+           
         }
 
         private void ClosePopup(object sender, EventArgs e)

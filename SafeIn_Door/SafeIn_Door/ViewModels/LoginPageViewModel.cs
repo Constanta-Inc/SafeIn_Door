@@ -23,7 +23,7 @@ namespace SafeIn_Door.ViewModels
         public LoginPageViewModel()
         {
             //to delete
-            door_id = "18888871-19ef-4ebd-bc27-d2bfc3b896ef";
+            door_id = "5c17f223-a2dc-4d14-a135-055f74e46789";
 
             OnPropertyChanged();
 

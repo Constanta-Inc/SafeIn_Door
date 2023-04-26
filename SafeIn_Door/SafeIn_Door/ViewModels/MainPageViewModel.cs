@@ -18,6 +18,8 @@ namespace SafeIn_Door.ViewModels
         public string AlertText { get => AlertText_; set => SetProperty(ref AlertText_, value); }
 
         public static string AlertText_ = "";
+        public static string ResultText_ = "";
+        public string ResultText { get => ResultText_; set => SetProperty(ref ResultText_, value); }
         public string ScanResult
         {
             get { return scanResult; }
@@ -43,6 +45,7 @@ namespace SafeIn_Door.ViewModels
             if (scanResult == "")
             {
                 AlertText = "Scan a QR code!";
+                ResultText = "Error!";
             }
             else
             {
@@ -50,13 +53,15 @@ namespace SafeIn_Door.ViewModels
                 if (!DoorTryResult.ISSuccess)
                 {
                     AlertText = DoorTryResult.ErrorMessage;
+                    ResultText = "Error!";
                 }
                 else
                 {
                     AlertText = "Unlocked!";
+                    ResultText = "Success!";
                 }
             }
-            Shell.Current.ShowPopup(new PopupPage(AlertText) {});
+            Shell.Current.ShowPopup(new PopupPage(AlertText, ResultText) {});
 
             scanResult = "";
 
